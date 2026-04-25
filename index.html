@@ -822,14 +822,14 @@
     </div>
 
 <script type="module">
-    // FIREBASE V12.12.0 + FIRESTORE CLOUD SYNC V16 NEXT GEN
+        // FIREBASE V12.12.0 + FIRESTORE CLOUD SYNC V16 NEXT GEN
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+    import { getAuth, setPersistence, browserLocalPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
     import { initializeFirestore, persistentLocalCache, doc, setDoc, getDocs, collection, deleteDoc, query } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
-    // --- V16 SECURITY OBFUSCATION LAYER ---
+            // --- V16 SECURITY OBFUSCATION LAYER ---
     // Menyembunyikan Kunci API & Firebase agar sulit dicuri via Inspect Element
-    const _0x1a = atob("Z3NrX0Mxd09lUXZVa0VkbnFxUHpXR2R5YjNGWXM2SW9veGtsSWplNmhVR1g1ZklLVFEzaQ=="); 
+    const _0x1a = atob("Z3NrX0Mxd09lUUJxaE92VWtFZG5xcVB6V0dkeWIzRllzNklvb3hrbElKZTZoVUdYNWZJS1RRM2k="); // Groq Key Baru
     const _0xFb = {
       apiKey: atob("QUl6YVN5Qng4ZHd1YnhTZWFPa0N0V2ZMREc1QUFlWlZtclh6d19n"),
       authDomain: atob("d2ViLWVlYjk4LmZpcmViYXNlYXBwLmNvbQ=="),
@@ -841,6 +841,10 @@
 
     const app = initializeApp(_0xFb);
     const auth = getAuth(app);
+    
+    // FIX BUG: Paksa Firebase menyimpan sesi login secara permanen (Anti-Logout saat Refresh/Restart)
+    setPersistence(auth, browserLocalPersistence).catch((error) => console.log("Persistence Error:", error));
+    
     const db = initializeFirestore(app, { localCache: persistentLocalCache() });
 
     const GROQ_API_KEY = _0x1a;
