@@ -822,11 +822,6 @@
     </div>
 
 <script type="module">
-        // FIREBASE V12.12.0 + FIRESTORE CLOUD SYNC V16 NEXT GEN
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-    import { getAuth, setPersistence, browserLocalPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
-    import { initializeFirestore, persistentLocalCache, doc, setDoc, getDocs, collection, deleteDoc, query } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
-
             // --- V16 SECURITY OBFUSCATION LAYER ---
     // Menyembunyikan Kunci API & Firebase agar sulit dicuri via Inspect Element
     const _0x1a = atob("Z3NrX0Mxd09lUUJxaE92VWtFZG5xcVB6V0dkeWIzRllzNklvb3hrbElKZTZoVUdYNWZJS1RRM2k="); // Groq Key Baru
@@ -848,6 +843,7 @@
     const db = initializeFirestore(app, { localCache: persistentLocalCache() });
 
     const GROQ_API_KEY = _0x1a;
+
 
     let currentUserUID = null;
     let selectedModel = 'xinus';
